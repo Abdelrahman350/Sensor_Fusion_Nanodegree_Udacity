@@ -56,7 +56,10 @@ class UKF {
 
   // state covariance matrix
   Eigen::MatrixXd P_;
-
+  
+  // create sigma points
+  Eigen::MatrixXd Xsig_;
+  
   // predicted sigma points matrix
   Eigen::MatrixXd Xsig_pred_;
 
@@ -92,9 +95,24 @@ class UKF {
 
   // Augmented state dimension
   int n_aug_;
-
+  
+  // Number of sigma points
+  int n_sig_;
+  
   // Sigma point spreading parameter
   double lambda_;
+  
+  // Number of Lidar sensor output parameters (pos_x, pos_y)
+  int n_zl = 2;
+  
+  // Number of Radar sensor output parameters (range, angle, vel)
+  int n_zr = 3;
+  
+  // The current NIS for radar
+  double NIS_radar_;
+
+  // The current NIS for laser
+  double NIS_laser_;
 };
 
 #endif  // UKF_H
